@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Competition } from './components/Competition'
 import { Diagnosis } from './components/Diagnosis'
 import { Stages } from './components/Stages'
 import { SummaryPanel } from './components/SummaryPanel'
 import { evaluateEngine } from './lib/calc'
+import { compareCompetition, defaultCompetitors } from './lib/competition'
 import {
   applyPatch,
   cloneInputs,
@@ -17,6 +19,7 @@ export default function App() {
   const [state, setState] = useState(() => clonePreset('saas'))
   const [simBackup, setSimBackup] = useState<SimulatorInputs | null>(null)
   const [simName, setSimName] = useState<string | null>(null)
+  const [competitors, setCompetitors] = useState(() => defaultCompetitors('saas'))
 
   const inputs: SimulatorInputs = {
     stage1: state.stage1,
@@ -36,6 +39,13 @@ export default function App() {
       evaluateEngine(actionBase, state.criteria).overall,
     ).actions,
   }
+  const competition = compareCompetition(
+    liveDiagnosis.levers,
+    inputs,
+    state.criteria,
+    competitors,
+    result.market.value,
+  )
 
   function clearSimulation() {
     setSimBackup(null)
@@ -45,11 +55,13 @@ export default function App() {
   function applyType(type: BusinessType) {
     setBusinessType(type)
     setState(clonePreset(type))
+    setCompetitors(defaultCompetitors(type))
     clearSimulation()
   }
 
   function reset() {
     setState(clonePreset(businessType))
+    setCompetitors(defaultCompetitors(businessType))
     clearSimulation()
   }
 
@@ -180,6 +192,14 @@ export default function App() {
           onSimulate={applySimulation}
           onResetSimulation={resetSimulation}
         />
+        <div className="mt-6">
+          <Competition
+            competitors={competitors}
+            view={competition}
+            ownPotentialYen={result.market.value}
+            onChange={setCompetitors}
+          />
+        </div>
       </div>
     </div>
   )
