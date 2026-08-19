@@ -13,28 +13,28 @@ export const verdictTheme: Record<
   }
 > = {
   pass: {
-    card: 'glass border-[rgba(142,182,234,0.38)] shadow-[0_0_0_1px_rgba(120,170,230,0.08),0_20px_50px_rgba(0,0,0,0.45)]',
+    card: 'block-ok',
     badge: 'badge-ok',
-    formula: 'glass-soft border-[rgba(142,182,234,0.22)] bg-[rgba(80,130,200,0.08)]',
+    formula: 'border-sky-300/25 bg-black/20',
     spine: 'badge-ok',
     glow: 'bg-sky-300/70',
   },
   kill: {
-    card: 'glass border-[rgba(214,90,90,0.45)] shadow-[0_0_0_1px_rgba(200,70,70,0.1),0_20px_50px_rgba(0,0,0,0.45)]',
+    card: 'block-err',
     badge: 'badge-err',
-    formula: 'glass-soft border-[rgba(214,90,90,0.25)] bg-[rgba(180,50,50,0.1)]',
+    formula: 'border-red-300/25 bg-black/20',
     spine: 'badge-err',
     glow: 'bg-red-400/70',
   },
   review: {
-    card: 'glass border-[rgba(196,100,100,0.38)] shadow-[0_0_0_1px_rgba(180,80,80,0.08),0_20px_50px_rgba(0,0,0,0.45)]',
+    card: 'block-warn',
     badge: 'badge-soft',
-    formula: 'glass-soft border-[rgba(196,100,100,0.2)] bg-[rgba(160,60,60,0.08)]',
+    formula: 'border-red-300/20 bg-black/20',
     spine: 'badge-soft',
     glow: 'bg-red-300/60',
   },
   invalid: {
-    card: 'glass',
+    card: 'block-mute',
     badge: 'badge-mute',
     formula: 'glass-soft',
     spine: 'badge-mute',
