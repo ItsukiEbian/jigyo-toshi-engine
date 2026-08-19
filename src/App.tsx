@@ -1,13 +1,22 @@
 import { useState } from 'react'
+import { Diagnosis } from './components/Diagnosis'
 import { Stages } from './components/Stages'
 import { SummaryPanel } from './components/SummaryPanel'
 import { evaluateEngine } from './lib/calc'
+import {
+  applyPatch,
+  cloneInputs,
+  diagnose,
+  type RecommendedAction,
+} from './lib/diagnosis'
 import { BUSINESS_TYPES, clonePreset } from './lib/presets'
 import type { BusinessType, SimulatorCriteria, SimulatorInputs } from './types'
 
 export default function App() {
   const [businessType, setBusinessType] = useState<BusinessType>('saas')
   const [state, setState] = useState(() => clonePreset('saas'))
+  const [simBackup, setSimBackup] = useState<SimulatorInputs | null>(null)
+  const [simName, setSimName] = useState<string | null>(null)
 
   const inputs: SimulatorInputs = {
     stage1: state.stage1,
@@ -17,14 +26,31 @@ export default function App() {
   }
 
   const result = evaluateEngine(inputs, state.criteria)
+  const liveDiagnosis = diagnose(inputs, state.criteria, result.overall)
+  const actionBase = simBackup ?? inputs
+  const diagnosis = {
+    ...liveDiagnosis,
+    actions: diagnose(
+      actionBase,
+      state.criteria,
+      evaluateEngine(actionBase, state.criteria).overall,
+    ).actions,
+  }
+
+  function clearSimulation() {
+    setSimBackup(null)
+    setSimName(null)
+  }
 
   function applyType(type: BusinessType) {
     setBusinessType(type)
     setState(clonePreset(type))
+    clearSimulation()
   }
 
   function reset() {
     setState(clonePreset(businessType))
+    clearSimulation()
   }
 
   function setInputs(next: SimulatorInputs) {
@@ -33,6 +59,20 @@ export default function App() {
 
   function setCriteria(criteria: SimulatorCriteria) {
     setState((prev) => ({ ...prev, criteria }))
+  }
+
+  function applySimulation(action: RecommendedAction) {
+    const current = cloneInputs(inputs)
+    const base = simBackup ?? current
+    if (simBackup === null) setSimBackup(current)
+    setSimName(action.name)
+    setInputs(applyPatch(base, action.patch))
+  }
+
+  function resetSimulation() {
+    if (simBackup === null) return
+    setInputs(simBackup)
+    clearSimulation()
   }
 
   return (
@@ -92,6 +132,23 @@ export default function App() {
         </div>
       </header>
 
+      {simName ? (
+        <div className="border-b border-amber-200 bg-amber-50">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <p className="text-sm font-medium text-amber-950">
+              シミュレーション中：{simName}
+            </p>
+            <button
+              type="button"
+              onClick={resetSimulation}
+              className="self-start text-sm font-bold text-amber-900 underline-offset-2 hover:underline"
+            >
+              シミュレーションをリセット
+            </button>
+          </div>
+        </div>
+      ) : null}
+
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-8 lg:py-8">
         <div className="mb-5 lg:hidden">
           <SummaryPanel result={result} compact />
@@ -113,6 +170,15 @@ export default function App() {
         <aside className="mt-6 hidden lg:sticky lg:top-6 lg:mt-0 lg:block">
           <SummaryPanel result={result} />
         </aside>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 pb-10 sm:px-6">
+        <Diagnosis
+          diagnosis={diagnosis}
+          simulationName={simName}
+          onSimulate={applySimulation}
+          onResetSimulation={resetSimulation}
+        />
       </div>
     </div>
   )
