@@ -351,7 +351,7 @@ function StageUnit({
       >
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <p className="text-xs font-bold tracking-wide text-slate-500">顧客獲得効率</p>
+            <p className="text-xs font-bold tracking-wide text-zinc-500">顧客獲得効率</p>
             <div className="mt-1">
               {efficiency === null ? (
                 <MetricValue value="計算不可" />
@@ -361,7 +361,7 @@ function StageUnit({
             </div>
           </div>
           <div>
-            <p className="text-xs font-bold tracking-wide text-slate-500">推定回収期間</p>
+            <p className="text-xs font-bold tracking-wide text-zinc-500">推定回収期間</p>
             <div className="mt-1">
               {paybackMonths === null ? (
                 <MetricValue value="計算不可" />
@@ -378,7 +378,7 @@ function StageUnit({
             </div>
           </div>
         </div>
-        <p className="mt-4 text-xs leading-relaxed text-slate-500">
+        <p className="mt-4 text-xs leading-relaxed text-zinc-500">
           顧客単価は1ヶ月あたりの売上として計算します。回収期間 ＝ 顧客獲得費用 ÷ 月あたり粗利益。
         </p>
       </FormulaBlock>
@@ -470,7 +470,7 @@ function StageUnit({
             })
           }
         />
-        <p className="sm:col-span-2 text-xs text-slate-500">
+        <p className="sm:col-span-2 text-xs text-zinc-500">
           PASSは効率と回収期間の両方を満たすこと。KILLはどちらか一方でも抵触すれば成立します。
         </p>
       </CriteriaBox>
@@ -567,7 +567,7 @@ function StageGrowth({
 
 function CriteriaBox({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 px-4 py-3">
+    <div className="glass-soft rounded-2xl px-4 py-3">
       <SectionLabel>判定基準（変更可）</SectionLabel>
       <div className="grid gap-3 sm:grid-cols-2">{children}</div>
     </div>

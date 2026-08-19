@@ -3,28 +3,60 @@
 @theme {
   --font-sans: "IBM Plex Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
     "Noto Sans JP", sans-serif;
-  --color-ink: #122033;
-  --color-paper: #efe8db;
-  --color-card: #fffdf8;
+  --color-ink: #07080b;
+  --color-paper: #07080b;
+  --color-card: rgba(255, 255, 255, 0.045);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   font-family: var(--font-sans);
-  color: #14202c;
+  color: #e8e6e1;
+  background-color: #050507;
+  background-image:
+    radial-gradient(ellipse 90% 55% at 12% -8%, rgba(110, 150, 210, 0.16), transparent 58%),
+    radial-gradient(ellipse 60% 45% at 100% 0%, rgba(160, 60, 60, 0.1), transparent 52%),
+    radial-gradient(ellipse 50% 35% at 70% 110%, rgba(180, 185, 195, 0.06), transparent 55%),
+    linear-gradient(180deg, #0a0b10 0%, #050507 38%, #040405 100%);
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 8% -8%, rgba(37, 99, 235, 0.14), transparent 55%),
-    radial-gradient(ellipse 55% 40% at 100% 0%, rgba(220, 38, 38, 0.08), transparent 50%),
-    radial-gradient(ellipse 40% 30% at 70% 100%, rgba(59, 130, 246, 0.08), transparent 50%),
-    #efe8db;
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.025) 38%, transparent 52%),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 3px,
+      rgba(255, 255, 255, 0.012) 3px,
+      rgba(255, 255, 255, 0.012) 4px
+    );
 }
 
 #root {
+  position: relative;
+  z-index: 1;
   min-height: 100svh;
 }
 
@@ -40,4 +72,85 @@ input[type='number'] {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+.glass {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 42%, rgba(255, 255, 255, 0.02) 100%);
+  background-color: rgba(10, 11, 16, 0.38);
+  border: 1px solid rgba(230, 234, 240, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 22px 60px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(34px) saturate(1.55);
+  -webkit-backdrop-filter: blur(34px) saturate(1.55);
+}
+
+.glass-soft {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+}
+
+.metal-title {
+  background: linear-gradient(180deg, #f7f5ef 0%, #d5d2ca 46%, #8f8d86 52%, #ece9e2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.metal-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(210, 214, 222, 0.55),
+    rgba(255, 255, 255, 0.85),
+    rgba(160, 166, 176, 0.4),
+    transparent
+  );
+}
+
+.badge-ok {
+  background: linear-gradient(180deg, #8eb6ea 0%, #3d74c4 48%, #2a5aa0 100%);
+  color: #f4f7fb;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 16px rgba(40, 90, 170, 0.28);
+}
+
+.badge-err {
+  background: linear-gradient(180deg, #e38989 0%, #c04444 50%, #9b2d2d 100%);
+  color: #fff6f6;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 6px 16px rgba(160, 40, 40, 0.28);
+}
+
+.badge-soft {
+  background: linear-gradient(180deg, #d08a8a 0%, #b45353 100%);
+  color: #fff6f6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.badge-mute {
+  background: linear-gradient(180deg, #8a8d96 0%, #4c5058 100%);
+  color: #f2f2f4;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.input-shell {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.input-shell:focus-within {
+  border-color: rgba(142, 182, 234, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 3px rgba(90, 140, 210, 0.16);
 }

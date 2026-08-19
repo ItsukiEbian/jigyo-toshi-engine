@@ -31,15 +31,15 @@ export function NumberField({
 
   return (
     <label className="block">
-      <span className="mb-1.5 block text-[13px] font-medium leading-snug text-slate-600">
+      <span className="mb-1.5 block text-[13px] font-medium leading-snug text-zinc-400">
         {label}
       </span>
-      <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/15">
+      <div className="input-shell flex overflow-hidden rounded-xl">
         <input
           type="number"
           inputMode="decimal"
           data-field={fieldId}
-          className="tabular min-w-0 flex-1 bg-transparent px-3 py-2.5 text-right text-lg font-semibold text-slate-900 outline-none [appearance:textfield]"
+          className="tabular min-w-0 flex-1 bg-transparent px-3 py-2.5 text-right text-lg font-semibold text-zinc-50 outline-none [appearance:textfield]"
           value={value}
           min={min}
           step={step}
@@ -53,12 +53,12 @@ export function NumberField({
             onChange(Number.isFinite(next) ? next : '')
           }}
         />
-        <span className="flex shrink-0 items-center bg-slate-50 px-2.5 text-xs font-medium text-slate-500 sm:px-3 sm:text-sm">
+        <span className="flex shrink-0 items-center border-l border-white/10 bg-white/5 px-2.5 text-xs font-medium text-zinc-400 sm:px-3 sm:text-sm">
           {unit}
         </span>
       </div>
       {preview || hint ? (
-        <span className="mt-1 block text-xs text-slate-400">
+        <span className="mt-1 block text-xs text-zinc-500">
           {preview}
           {preview && hint ? ' ／ ' : ''}
           {hint}

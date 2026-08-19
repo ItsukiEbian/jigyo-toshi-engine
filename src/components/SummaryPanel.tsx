@@ -5,17 +5,17 @@ import { STAGE_META } from '../lib/presets'
 import type { OverallStatus, Verdict } from '../types'
 
 const statusTone: Record<OverallStatus, string> = {
-  all_pass: 'border-blue-400 bg-blue-600 text-white',
-  partial_kill: 'border-red-400 bg-red-600 text-white',
-  review: 'border-red-300 bg-red-500 text-white',
-  in_progress: 'border-slate-300 bg-slate-800 text-white',
+  all_pass: 'badge-ok',
+  partial_kill: 'badge-err',
+  review: 'badge-soft',
+  in_progress: 'badge-mute',
 }
 
 const rowTone: Record<Verdict, string> = {
-  pass: 'bg-blue-50 text-blue-800',
-  kill: 'bg-red-50 text-red-800',
-  review: 'bg-red-50 text-red-800',
-  invalid: 'bg-slate-100 text-slate-600',
+  pass: 'bg-sky-400/10 text-sky-200',
+  kill: 'bg-red-500/12 text-red-200',
+  review: 'bg-red-500/10 text-red-200',
+  invalid: 'bg-white/5 text-zinc-400',
 }
 
 type SummaryPanelProps = {
@@ -45,11 +45,11 @@ export function SummaryPanel({ result, compact = false }: SummaryPanelProps) {
 
   if (compact) {
     return (
-      <section className="rounded-2xl border border-slate-200 bg-white/90 p-3 shadow-sm">
+      <section className="glass rounded-2xl p-3">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-[11px] font-bold tracking-[0.14em] text-slate-400">現在地</p>
-            <p className="text-sm font-bold text-slate-900">{reachedLabel}</p>
+            <p className="text-[11px] font-bold tracking-[0.14em] text-zinc-500">現在地</p>
+            <p className="text-sm font-bold text-zinc-100">{reachedLabel}</p>
           </div>
           <span
             className={`rounded-full px-3 py-1 text-xs font-bold ${statusTone[result.overall]}`}
@@ -73,7 +73,7 @@ export function SummaryPanel({ result, compact = false }: SummaryPanelProps) {
   }
 
   return (
-    <section className="overflow-hidden rounded-[28px] border border-slate-200 bg-[#fffdf8] shadow-[0_24px_50px_-32px_rgba(15,23,42,0.45)]">
+    <section className="glass overflow-hidden rounded-[28px]">
       <div className={`px-5 py-5 ${statusTone[result.overall]}`}>
         <p className="text-[11px] font-bold tracking-[0.18em] text-white/70">全体の投資判断</p>
         <p className="mt-1 text-3xl font-bold tracking-tight">{overallLabel(result.overall)}</p>
@@ -82,15 +82,15 @@ export function SummaryPanel({ result, compact = false }: SummaryPanelProps) {
 
       <div className="space-y-5 px-5 py-5">
         <div>
-          <p className="text-[11px] font-bold tracking-[0.16em] text-slate-400">現在どのステージまで進んでいるか</p>
-          <p className="mt-1 text-lg font-bold text-slate-900">{reachedLabel}</p>
+          <p className="text-[11px] font-bold tracking-[0.16em] text-zinc-500">現在どのステージまで進んでいるか</p>
+          <p className="mt-1 text-lg font-bold text-zinc-50">{reachedLabel}</p>
           {result.overall !== 'all_pass' ? (
-            <p className="mt-1 text-sm text-slate-500">判定の焦点は {current.title}</p>
+            <p className="mt-1 text-sm text-zinc-500">判定の焦点は {current.title}</p>
           ) : null}
         </div>
 
         <div>
-          <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-slate-400">
+          <p className="mb-2 text-[11px] font-bold tracking-[0.16em] text-zinc-500">
             各ステージの判定
           </p>
           <ul className="space-y-2">
@@ -101,11 +101,11 @@ export function SummaryPanel({ result, compact = false }: SummaryPanelProps) {
                 <li
                   key={stage.id}
                   className={`rounded-2xl border px-3 py-3 ${
-                    isCurrent ? 'border-slate-900/20 bg-white' : 'border-transparent bg-slate-50'
+                    isCurrent ? 'border-white/15 bg-white/10' : 'border-transparent bg-white/5'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-bold text-slate-800">
+                    <p className="text-sm font-bold text-zinc-100">
                       {meta.numeral} {meta.short}
                     </p>
                     <span
@@ -114,7 +114,7 @@ export function SummaryPanel({ result, compact = false }: SummaryPanelProps) {
                       {verdictLabel(stage.verdict)}
                     </span>
                   </div>
-                  <p className="tabular mt-1 text-xs text-slate-500">{metrics[index]}</p>
+                  <p className="tabular mt-1 text-xs text-zinc-500">{metrics[index]}</p>
                 </li>
               )
             })}

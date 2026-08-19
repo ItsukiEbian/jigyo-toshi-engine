@@ -27,11 +27,11 @@ export function StageShell({
 }: StageShellProps) {
   return (
     <section
-      className={`relative transition-opacity duration-300 ${blocked ? 'opacity-55' : 'opacity-100'}`}
+      className={`relative transition-opacity duration-300 ${blocked ? 'opacity-50' : 'opacity-100'}`}
     >
       <article
-        className={`rounded-[28px] border-2 p-4 transition-colors duration-300 sm:p-6 ${verdictTheme[verdict].card} ${
-          isCurrent ? 'ring-2 ring-offset-2 ring-offset-[#efe8db] ring-slate-900/10' : ''
+        className={`rounded-[28px] p-4 transition-colors duration-300 sm:p-6 ${verdictTheme[verdict].card} ${
+          isCurrent ? 'ring-1 ring-white/20' : ''
         }`}
       >
         <header className="mb-5 flex flex-wrap items-start justify-between gap-3">
@@ -42,8 +42,8 @@ export function StageShell({
               {numeral}
             </div>
             <div>
-              <p className="text-[11px] font-bold tracking-[0.16em] text-slate-400">ステージ</p>
-              <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+              <p className="text-[11px] font-bold tracking-[0.16em] text-zinc-500">ステージ</p>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-50 sm:text-2xl">
                 {title}
               </h2>
             </div>
@@ -52,20 +52,20 @@ export function StageShell({
         </header>
 
         {blocked ? (
-          <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+          <p className="mb-4 rounded-xl border border-red-400/25 bg-red-500/10 px-3 py-2 text-sm text-red-200">
             前のステージがKILLのため、実運用ではこの段階には進みません。数値の試し入力はできます。
           </p>
         ) : null}
 
         {children}
 
-        <div className="mt-5 rounded-2xl border border-dashed border-slate-200 bg-white/70 px-4 py-3">
-          <p className="text-[11px] font-bold tracking-[0.14em] text-slate-400">
+        <div className="glass-soft mt-5 rounded-2xl px-4 py-3">
+          <p className="text-[11px] font-bold tracking-[0.14em] text-zinc-500">
             このステージで投入する推奨予算
           </p>
-          <p className="mt-1 text-lg font-bold text-slate-800">{budget}</p>
+          <p className="mt-1 text-lg font-bold text-zinc-100">{budget}</p>
           {passUnlocked && nextName && !blocked ? (
-            <p className="mt-2 text-sm font-medium text-blue-700">
+            <p className="mt-2 text-sm font-medium text-sky-300">
               次のステージの予算が解放されます（{nextName}）
             </p>
           ) : null}
@@ -81,13 +81,13 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
 
   return (
     <div className="relative mx-auto max-w-xl py-3">
-      <div className="mx-auto h-6 w-px bg-slate-300" />
+      <div className="mx-auto h-6 w-px bg-white/15" />
       <div className="grid grid-cols-2 gap-3">
         <div
           className={`rounded-2xl border px-3 py-2.5 text-center text-sm font-bold transition-colors ${
             passOn
-              ? 'border-blue-500 bg-blue-600 text-white'
-              : 'border-blue-200 bg-blue-50 text-blue-800'
+              ? 'badge-ok border-transparent'
+              : 'border-sky-300/20 bg-sky-400/5 text-sky-200'
           }`}
         >
           PASS → 次へ
@@ -95,8 +95,8 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
         <div
           className={`rounded-2xl border px-3 py-2.5 text-center text-sm font-bold transition-colors ${
             killOn
-              ? 'border-red-600 bg-red-600 text-white'
-              : 'border-red-200 bg-red-50 text-red-800'
+              ? 'badge-err border-transparent'
+              : 'border-red-400/20 bg-red-500/5 text-red-200'
           }`}
         >
           KILL → 撤退
@@ -106,21 +106,21 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
         <div className="flex flex-col items-center pt-3">
           <div
             className={`h-8 w-px ${
-              passOn ? 'bg-blue-500' : killOn ? 'bg-red-300' : 'bg-slate-300'
+              passOn ? 'bg-sky-400/70' : killOn ? 'bg-red-400/50' : 'bg-white/15'
             }`}
           />
           <div
             className={`h-0 w-0 border-x-8 border-x-transparent border-t-8 ${
               passOn
-                ? 'border-t-blue-500'
+                ? 'border-t-sky-400/70'
                 : killOn
-                  ? 'border-t-red-300'
-                  : 'border-t-slate-300'
+                  ? 'border-t-red-400/50'
+                  : 'border-t-white/15'
             }`}
           />
         </div>
       ) : (
-        <div className="mx-auto mt-3 h-1.5 w-16 rounded-full bg-slate-200" />
+        <div className="metal-line mx-auto mt-3 w-16" />
       )}
     </div>
   )
