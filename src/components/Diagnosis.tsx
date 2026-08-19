@@ -156,11 +156,11 @@ function LeverPanel({
           return (
             <li
               key={lever.id}
-              className={`rounded-2xl border px-4 py-3 ${
+              className={`rounded-2xl px-4 py-3 ${
                 isWin
-                  ? 'border-sky-300/30 bg-sky-400/8'
+                  ? 'border border-sky-400/70 bg-sky-400/12'
                   : isWeak
-                    ? 'border-red-400/30 bg-red-500/8'
+                    ? 'border border-red-400/70 bg-red-500/12'
                     : 'glass-soft'
               }`}
             >
@@ -168,12 +168,12 @@ function LeverPanel({
                 <p className="text-sm font-bold text-zinc-100">{lever.label}</p>
                 <div className="flex items-center gap-2">
                   {isWin ? (
-                    <span className="badge-ok rounded-full px-2.5 py-0.5 text-[11px] font-bold">
+                    <span className="text-[11px] font-bold tracking-wide text-sky-300">
                       ここが勝ち筋
                     </span>
                   ) : null}
                   {isWeak ? (
-                    <span className="badge-err rounded-full px-2.5 py-0.5 text-[11px] font-bold">
+                    <span className="text-[11px] font-bold tracking-wide text-red-300">
                       ここがボトルネック
                     </span>
                   ) : null}
