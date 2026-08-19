@@ -33,17 +33,17 @@ export function Diagnosis({
       </header>
 
       {simulationName ? (
-        <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm font-medium text-amber-900">
+        <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm font-medium text-blue-900">
             シミュレーション中：{simulationName}
-            <span className="mt-1 block text-xs font-normal text-amber-800/80">
+            <span className="mt-1 block text-xs font-normal text-blue-800/80">
               フローチャートの入力と判定は、この仮説を当てはめた仮の数字です。
             </span>
           </p>
           <button
             type="button"
             onClick={onResetSimulation}
-            className="h-10 shrink-0 rounded-xl border border-amber-300 bg-white px-3 text-sm font-bold text-amber-900 transition hover:bg-amber-100"
+            className="h-10 shrink-0 rounded-xl border border-blue-300 bg-white px-3 text-sm font-bold text-blue-900 transition hover:bg-blue-100"
           >
             シミュレーションをリセット
           </button>
@@ -116,7 +116,7 @@ function SensitivityList({ items }: { items: DiagnosisResult['sensitivities'] })
               </div>
               <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
                 <div
-                  className={`h-full rounded-full ${index === 0 ? 'bg-rose-500' : 'bg-slate-400'}`}
+                  className={`h-full rounded-full ${index === 0 ? 'bg-red-500' : 'bg-slate-400'}`}
                   style={{ width: `${Math.max(item.sharePct, 3)}%` }}
                 />
               </div>
@@ -157,9 +157,9 @@ function LeverPanel({
               key={lever.id}
               className={`rounded-2xl border px-4 py-3 ${
                 isWin
-                  ? 'border-emerald-500 bg-[#f4fbf6]'
+                  ? 'border-blue-500 bg-[#f3f7fd]'
                   : isWeak
-                    ? 'border-rose-400 bg-[#fff6f6]'
+                    ? 'border-red-400 bg-[#fff5f5]'
                     : 'border-slate-200 bg-white/80'
               }`}
             >
@@ -167,12 +167,12 @@ function LeverPanel({
                 <p className="text-sm font-bold text-slate-800">{lever.label}</p>
                 <div className="flex items-center gap-2">
                   {isWin ? (
-                    <span className="rounded-full bg-emerald-600 px-2.5 py-0.5 text-[11px] font-bold text-white">
+                    <span className="rounded-full bg-blue-600 px-2.5 py-0.5 text-[11px] font-bold text-white">
                       ここが勝ち筋
                     </span>
                   ) : null}
                   {isWeak ? (
-                    <span className="rounded-full bg-rose-600 px-2.5 py-0.5 text-[11px] font-bold text-white">
+                    <span className="rounded-full bg-red-600 px-2.5 py-0.5 text-[11px] font-bold text-white">
                       ここがボトルネック
                     </span>
                   ) : null}
@@ -184,7 +184,7 @@ function LeverPanel({
               <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-slate-100">
                 <div
                   className={`h-full rounded-full ${
-                    isWin ? 'bg-emerald-500' : isWeak ? 'bg-rose-500' : 'bg-slate-400'
+                    isWin ? 'bg-blue-500' : isWeak ? 'bg-red-500' : 'bg-slate-400'
                   }`}
                   style={{ width: `${width}%` }}
                 />
@@ -209,7 +209,7 @@ function ActionCard({
   return (
     <article
       className={`flex h-full flex-col rounded-2xl border px-4 py-4 ${
-        active ? 'border-amber-400 bg-amber-50' : 'border-slate-200 bg-white/80'
+        active ? 'border-blue-400 bg-blue-50' : 'border-slate-200 bg-white/80'
       }`}
     >
       <h3 className="text-sm font-bold leading-snug text-slate-900">{action.name}</h3>
@@ -227,8 +227,8 @@ function ActionCard({
         onClick={onSimulate}
         className={`mt-4 h-10 rounded-xl text-sm font-bold transition ${
           active
-            ? 'bg-amber-500 text-white'
-            : 'bg-[#12241c] text-[#f6f1e6] hover:bg-[#1c3328]'
+            ? 'bg-blue-600 text-white'
+            : 'bg-[#122033] text-[#f6f1e6] hover:bg-[#1a3358]'
         }`}
       >
         {active ? '適用中' : 'この条件でシミュレート'}

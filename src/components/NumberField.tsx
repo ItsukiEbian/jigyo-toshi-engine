@@ -34,7 +34,7 @@ export function NumberField({
       <span className="mb-1.5 block text-[13px] font-medium leading-snug text-slate-600">
         {label}
       </span>
-      <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm focus-within:border-emerald-600 focus-within:ring-2 focus-within:ring-emerald-600/15">
+      <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-600/15">
         <input
           type="number"
           inputMode="decimal"

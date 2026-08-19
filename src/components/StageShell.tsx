@@ -52,7 +52,7 @@ export function StageShell({
         </header>
 
         {blocked ? (
-          <p className="mb-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+          <p className="mb-4 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
             前のステージがKILLのため、実運用ではこの段階には進みません。数値の試し入力はできます。
           </p>
         ) : null}
@@ -65,7 +65,7 @@ export function StageShell({
           </p>
           <p className="mt-1 text-lg font-bold text-slate-800">{budget}</p>
           {passUnlocked && nextName && !blocked ? (
-            <p className="mt-2 text-sm font-medium text-emerald-700">
+            <p className="mt-2 text-sm font-medium text-blue-700">
               次のステージの予算が解放されます（{nextName}）
             </p>
           ) : null}
@@ -86,8 +86,8 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
         <div
           className={`rounded-2xl border px-3 py-2.5 text-center text-sm font-bold transition-colors ${
             passOn
-              ? 'border-emerald-500 bg-emerald-600 text-white'
-              : 'border-emerald-200 bg-emerald-50 text-emerald-800'
+              ? 'border-blue-500 bg-blue-600 text-white'
+              : 'border-blue-200 bg-blue-50 text-blue-800'
           }`}
         >
           PASS → 次へ
@@ -95,8 +95,8 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
         <div
           className={`rounded-2xl border px-3 py-2.5 text-center text-sm font-bold transition-colors ${
             killOn
-              ? 'border-rose-500 bg-rose-600 text-white'
-              : 'border-rose-200 bg-rose-50 text-rose-800'
+              ? 'border-red-600 bg-red-600 text-white'
+              : 'border-red-200 bg-red-50 text-red-800'
           }`}
         >
           KILL → 撤退
@@ -106,15 +106,15 @@ export function FlowBranch({ verdict, isLast }: { verdict: Verdict; isLast: bool
         <div className="flex flex-col items-center pt-3">
           <div
             className={`h-8 w-px ${
-              passOn ? 'bg-emerald-500' : killOn ? 'bg-rose-300' : 'bg-slate-300'
+              passOn ? 'bg-blue-500' : killOn ? 'bg-red-300' : 'bg-slate-300'
             }`}
           />
           <div
             className={`h-0 w-0 border-x-8 border-x-transparent border-t-8 ${
               passOn
-                ? 'border-t-emerald-500'
+                ? 'border-t-blue-500'
                 : killOn
-                  ? 'border-t-rose-300'
+                  ? 'border-t-red-300'
                   : 'border-t-slate-300'
             }`}
           />

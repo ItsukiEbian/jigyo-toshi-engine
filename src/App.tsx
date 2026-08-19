@@ -77,10 +77,10 @@ export default function App() {
 
   return (
     <div className="min-h-svh">
-      <header className="border-b border-slate-900/5 bg-[#12241c] text-[#f6f1e6]">
+      <header className="border-b border-slate-900/5 bg-[#122033] text-[#f6f1e6]">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-5 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[11px] font-bold tracking-[0.22em] text-emerald-300/90">
+            <p className="text-[11px] font-bold tracking-[0.22em] text-blue-300/90">
               新規事業の投資判断アルゴリズム
             </p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -133,15 +133,15 @@ export default function App() {
       </header>
 
       {simName ? (
-        <div className="border-b border-amber-200 bg-amber-50">
+        <div className="border-b border-blue-200 bg-blue-50">
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-            <p className="text-sm font-medium text-amber-950">
+            <p className="text-sm font-medium text-blue-950">
               シミュレーション中：{simName}
             </p>
             <button
               type="button"
               onClick={resetSimulation}
-              className="self-start text-sm font-bold text-amber-900 underline-offset-2 hover:underline"
+              className="self-start text-sm font-bold text-blue-900 underline-offset-2 hover:underline"
             >
               シミュレーションをリセット
             </button>

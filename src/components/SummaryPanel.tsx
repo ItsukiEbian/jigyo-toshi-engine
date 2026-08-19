@@ -5,16 +5,16 @@ import { STAGE_META } from '../lib/presets'
 import type { OverallStatus, Verdict } from '../types'
 
 const statusTone: Record<OverallStatus, string> = {
-  all_pass: 'border-emerald-400 bg-emerald-600 text-white',
-  partial_kill: 'border-rose-400 bg-rose-600 text-white',
-  review: 'border-amber-300 bg-amber-500 text-white',
+  all_pass: 'border-blue-400 bg-blue-600 text-white',
+  partial_kill: 'border-red-400 bg-red-600 text-white',
+  review: 'border-red-300 bg-red-500 text-white',
   in_progress: 'border-slate-300 bg-slate-800 text-white',
 }
 
 const rowTone: Record<Verdict, string> = {
-  pass: 'bg-emerald-50 text-emerald-800',
-  kill: 'bg-rose-50 text-rose-800',
-  review: 'bg-amber-50 text-amber-800',
+  pass: 'bg-blue-50 text-blue-800',
+  kill: 'bg-red-50 text-red-800',
+  review: 'bg-red-50 text-red-800',
   invalid: 'bg-slate-100 text-slate-600',
 }
 
